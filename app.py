@@ -6,7 +6,7 @@ from PIL import Image, UnidentifiedImageError
 main_folder = "wan_alle"  # change this
 
 # Allowed image filenames (lowercase only)
-allowed_files = {"ref.png", "garment.jpg", "multi_ref_upscaled_refined.png"}
+allowed_files = {"ref.jpg", "garment.jpg", "multi_ref_upscaled_refined.png"}
 
 st.title("WAN FIGHT")
 
