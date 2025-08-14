@@ -14,18 +14,20 @@ for folder_name in sorted(os.listdir(main_folder)):
     if os.path.isdir(folder_path):
         st.subheader(folder_name)  # Folder name as section title
 
-        images = []
-        captions = []
+        # Get image file list
+        image_files = [
+            f for f in sorted(os.listdir(folder_path))
+            if f.lower().endswith((".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif"))
+        ]
 
-        for file_name in sorted(os.listdir(folder_path)):
-            if file_name.lower().endswith((".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif")):
-                img_path = os.path.join(folder_path, file_name)
-                try:
-                    img = Image.open(img_path)
-                    images.append(img)
-                    captions.append(os.path.splitext(file_name)[0])  # File name without extension
-                except UnidentifiedImageError:
-                    st.warning(f"Skipping invalid image: {file_name}")
+        # Create horizontal columns
+        cols = st.columns(len(image_files))
 
-        if images:
-            st.image(images, caption=captions, width=200)
+        for idx, file_name in enumerate(image_files):
+            img_path = os.path.join(folder_path, file_name)
+            try:
+                img = Image.open(img_path)
+                with cols[idx]:
+                    st.image(img, caption=os.path.splitext(file_name)[0], use_container_width=True)
+            except UnidentifiedImageError:
+                st.warning(f"Skipping invalid image: {file_name}")
