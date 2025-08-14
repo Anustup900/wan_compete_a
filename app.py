@@ -9,6 +9,7 @@ main_folder = "wan_alle"  # change this
 allowed_files = {"ref.jpg", "garment.jpg", "multi_ref_upscaled_refined.png"}
 
 st.title("WAN FIGHT")
+st.set_page_config(layout="wide")
 
 for folder_name in sorted(os.listdir(main_folder)):
     folder_path = os.path.join(main_folder, folder_name)
