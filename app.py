@@ -3,7 +3,7 @@ import streamlit as st
 from PIL import Image
 
 # Set the main directory
-main_dir = "wan_alle"  # change this
+main_folder = "wan_alle"  # change this
 
 st.title("WAN FIGHT")
 
