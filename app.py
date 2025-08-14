@@ -1,13 +1,11 @@
 import os
 import streamlit as st
-from PIL import Image
 from PIL import Image, UnidentifiedImageError
 
 # Set the main directory
 main_folder = "wan_alle"  # change this
 
-
-# Allowed image filenames (lowercase)
+# Allowed image filenames (lowercase only)
 allowed_files = {"ref.png", "garment.jpg", "multi_ref_upscaled_refined.png"}
 
 st.title("WAN FIGHT")
@@ -18,10 +16,10 @@ for folder_name in sorted(os.listdir(main_folder)):
     if os.path.isdir(folder_path):
         st.subheader(folder_name)
 
-        # Filter only a.png, b.png, c.png
+        # Filter only specific files (case-insensitive)
         image_files = [
             f for f in sorted(os.listdir(folder_path))
-            if f.lower() in allowed_files
+            if f.lower() in {name.lower() for name in allowed_files}
         ]
 
         if not image_files:
